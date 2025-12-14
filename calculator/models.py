@@ -72,3 +72,25 @@ class Gland(models.Model):
     material = models.CharField(max_length=20, choices=Material.choices)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     catalog_number = models.CharField(max_length=50)
+
+
+class Terminal(models.Model):
+    """
+    Model terminala elektrycznego.
+
+    Atrybuty:
+        wire_cross_section: Przekrój przewodu (CharField, max 10) - np. "2,5mm".
+        width_mm: Szerokość terminala na szynie w milimetrach (FloatField).
+        color: Kolor terminala (CharField, max 20) - np. "blue", "yellow".
+        voltage: Napięcie terminala w woltach (IntegerField).
+        current: Prąd terminala w amperach (FloatField).
+        price: Cena terminala (DecimalField).
+        catalog_number: Numer katalogowy terminala (CharField, max 50).
+    """
+    wire_cross_section = models.CharField(max_length=10)
+    width_mm = models.FloatField()
+    color = models.CharField(max_length=20)
+    voltage = models.IntegerField()
+    current = models.FloatField()
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    catalog_number = models.CharField(max_length=50)
