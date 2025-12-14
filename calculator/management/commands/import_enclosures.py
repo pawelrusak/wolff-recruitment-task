@@ -14,7 +14,7 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         """
-        Docstring for add_arguments
+        Dodaje argumenty do komendy zarządzania.
 
         Parametry
             parser: obiekt parsera argumentów
