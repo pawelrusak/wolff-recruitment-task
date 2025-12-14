@@ -7,7 +7,7 @@
             "id": "enc-001",
             "name": "Skrzynka 300x200x150",
             "code": "ENC-300-200-150",
-            "quantity": 0,
+            "quantity": 2,
             "currentConfig": {
                 "box_type": "terminal_boxe",
                 "comment": "Standardowa konfiguracja",
