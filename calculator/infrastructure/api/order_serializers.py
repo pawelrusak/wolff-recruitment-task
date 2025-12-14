@@ -1,19 +1,23 @@
-import uuid
 from rest_framework import serializers
 
 
 class TerminalSerializer(serializers.Serializer):
-    id = serializers.IntegerField(min_value=0)
+    id = serializers.IntegerField(min_value=0, required=False)
     size = serializers.CharField(max_length=50)
     quantity = serializers.IntegerField(min_value=0)
+    color = serializers.CharField(required=False, max_length=100)
+
+
+class GlandSerializerItem(serializers.Serializer):
+    id = serializers.IntegerField(required=False)
+    size = serializers.CharField(max_length=50)
+    quantity = serializers.IntegerField(min_value=0)
+    material = serializers.CharField(required=True, max_length=100)
 
 
 class GlandSerializer(serializers.Serializer):
-    id = serializers.IntegerField()
-    size = serializers.CharField(max_length=50)
     side = serializers.CharField(max_length=50)
-    quantity = serializers.IntegerField(min_value=0)
-    material = serializers.CharField(required=True, max_length=100)
+    items = GlandSerializerItem(many=True)
 
 
 class CurrentConfigSerializer(serializers.Serializer):
@@ -22,8 +26,9 @@ class CurrentConfigSerializer(serializers.Serializer):
 
 
 class SaveBoxSerializer(serializers.Serializer):
-    id = serializers.CharField(required=True, max_length=100)
+    id = serializers.CharField(required=False, max_length=100)
     name = serializers.CharField(required=True, max_length=100)
+    code = serializers.CharField(required=True, max_length=100)
     quantity = serializers.IntegerField(min_value=1)
     currentConfig = CurrentConfigSerializer()
     comment = serializers.CharField(required=False, allow_blank=True)
@@ -53,7 +58,7 @@ class OrderSerializer(serializers.Serializer):
                 raise serializers.ValidationError("Każdy element saveBox musi mieć currentConfig.")
 
             # Sprawdź czy quantity jest większe od 0
-            if box['currentConfig'].get('quantity', 0) <= 0:
+            if box.get('quantity', 0) <= 0:
                 raise serializers.ValidationError("Ilość musi być większa od 0.")
 
         return data
