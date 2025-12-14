@@ -41,3 +41,34 @@ class Enclosure(models.Model):
     mounting_area_right_y = models.FloatField(null=True)
 
     enclosure_terminals = models.JSONField(null=True)
+
+
+class Gland(models.Model):
+    """
+    Model dławika kablowego.
+
+    Atrybuty:
+        size: Rozmiar dławika (CharField, max 10) - np. "M12", "M16".
+        diameter_mm: Średnica nominalna dławika w milimetrach (IntegerField).
+        physical_diameter_mm: Fizyczna średnica dławika w milimetrach (IntegerField).
+        cable_range_min: Minimalna średnica kabla w milimetrach (FloatField).
+        cable_range_max: Maksymalna średnica kabla w milimetrach (FloatField).
+        material: Materiał dławika (CharField, max 20) - "PA" lub "Brass".
+        price: Cena dławika (DecimalField).
+        catalog_number: Numer katalogowy dławika (CharField, max 50).
+    """
+    class Material(models.TextChoices):
+        """
+        Dostępne materiały dławików kablowych.
+        """
+        PA = "PA"
+        BRASS = "Brass"
+
+    size = models.CharField(max_length=10)
+    diameter_mm = models.IntegerField()
+    physical_diameter_mm = models.IntegerField()
+    cable_range_min = models.FloatField()
+    cable_range_max = models.FloatField()
+    material = models.CharField(max_length=20, choices=Material.choices)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    catalog_number = models.CharField(max_length=50)
