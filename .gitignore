@@ -1,3 +1,6 @@
 .venv
 db.sqlite3
 calculator/migrations/
+
+__pycache__/**
+**/__pycache__/**
