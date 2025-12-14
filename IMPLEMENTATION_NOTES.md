@@ -58,6 +58,7 @@ Musiałem dwukrotnie przerywać zadanie w międzyczasie, dlatego godziny z Gita 
 #### Część 2
 
 - Po wywołaniu pierwszej komendy importującej otrzymałem błąd typu „nie znaleziono komendy”. Było to powodowane literówką w ścieżce do pliku z komendą. Poprawiłem to i mogłem kontynuować. Choć zajeło mi to kilka minut.
+- W zadaniu można było zastosować zaade DRY, choćby dla kodu otwierającego plik JSON i wczytującego dane.
 
 #### Część 3
 
